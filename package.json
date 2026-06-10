@@ -36,9 +36,9 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1065.0",
-    "@bull-board/api": "^6.19.0",
-    "@bull-board/express": "^7.2.1",
-    "@bull-board/nestjs": "^7.2.1",
+    "@bull-board/api": "7.2.1",
+    "@bull-board/express": "7.2.1",
+    "@bull-board/nestjs": "7.2.1",
     "@google/genai": "^2.4.0",
     "@nestjs-modules/ioredis": "^2.0.2",
     "@nestjs/bullmq": "^11.0.4",
@@ -50,6 +50,7 @@
     "@nestjs/swagger": "^11.4.4",
     "@nestjs/throttler": "^6.5.0",
     "@nestjs/typeorm": "^11.0.0",
+    "@nestjs/websockets": "11.1.26",
     "archiver": "^8.0.0",
     "bullmq": "^5.76.7",
     "class-transformer": "^0.5.1",
@@ -64,7 +65,7 @@
     "socket.io": "^4.8.3",
     "sqlite3": "^6.0.1",
     "tar-stream": "^3.2.0",
-    "typeorm": "^1.0.0",
+    "typeorm": "0.3.27",
     "uuid": "^11.0.5",
     "whatsapp-web.js": "^1.26.1-alpha.3"
   },
@@ -96,7 +97,7 @@
     "ts-loader": "^9.6.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^6.0.3",
+    "typescript": "5.9.3",
     "typescript-eslint": "^8.59.2"
   },
   "jest": {

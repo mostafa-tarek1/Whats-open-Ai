@@ -153,7 +153,7 @@ export class StorageService {
     const files = await this.listFiles();
     const output = new PassThrough();
 
-    const archive = archiver.default('tar', {
+    const archive = new archiver.TarArchive({
       gzip: true,
       gzipOptions: { level: 6 },
     });
