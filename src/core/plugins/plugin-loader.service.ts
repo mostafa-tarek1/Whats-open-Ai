@@ -321,11 +321,11 @@ export class PluginLoaderService implements OnModuleInit {
   // Built-in Plugin Registration (for Phase 4)
   // ============================================================================
 
-  registerBuiltInPlugin(manifest: PluginManifest, instance: IPlugin): void {
+  registerBuiltInPlugin(manifest: PluginManifest, instance: IPlugin, config: Record<string, unknown> = {}): void {
     const pluginInstance: PluginInstance = {
       manifest,
       status: PluginStatus.INSTALLED,
-      config: {},
+      config,
       instance,
       loadedAt: new Date(),
     };

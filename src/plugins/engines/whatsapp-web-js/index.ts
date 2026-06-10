@@ -10,6 +10,7 @@ import { WhatsAppWebJsAdapter } from '../../../engine/adapters/whatsapp-web-js.a
 export interface WhatsAppWebJsConfig {
   sessionDataPath?: string;
   headless?: boolean;
+  executablePath?: string;
   puppeteerArgs?: string[];
 }
 
@@ -37,6 +38,7 @@ export class WhatsAppWebJsPlugin implements IEnginePlugin {
     const sessionId = config.sessionId as string;
     const sessionDataPath = (this.context?.config.sessionDataPath as string) ?? './data/sessions';
     const headless = (this.context?.config.headless as boolean) ?? true;
+    const executablePath = this.context?.config.executablePath as string | undefined;
     const puppeteerArgs = (this.context?.config.puppeteerArgs as string[]) ?? [
       '--no-sandbox',
       '--disable-setuid-sandbox',
@@ -50,6 +52,7 @@ export class WhatsAppWebJsPlugin implements IEnginePlugin {
       sessionDataPath,
       puppeteer: {
         headless,
+        executablePath,
         args: puppeteerArgs,
       },
       proxy: proxyUrl

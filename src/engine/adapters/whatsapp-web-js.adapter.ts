@@ -41,6 +41,7 @@ export interface WhatsAppWebJsConfig {
   sessionDataPath: string;
   puppeteer?: {
     headless?: boolean;
+    executablePath?: string;
     args?: string[];
   };
   // Phase 3: Proxy per session
@@ -95,6 +96,7 @@ export class WhatsAppWebJsAdapter extends EventEmitter implements IWhatsAppEngin
         }),
         puppeteer: {
           headless: this.config.puppeteer?.headless ?? true,
+          executablePath: this.config.puppeteer?.executablePath,
           args: puppeteerArgs,
         },
       });
