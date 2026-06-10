@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Eye, EyeOff, Github } from 'lucide-react';
+import { Eye, EyeOff, FolderGit2 } from 'lucide-react';
 import './Login.css';
 
 interface LoginProps {
@@ -101,7 +101,7 @@ export function Login({ onLogin }: LoginProps) {
           rel="noopener noreferrer"
           className="github-link"
         >
-          <Github size={18} />
+          <FolderGit2 size={18} />
         </a>
       </footer>
     </div>
