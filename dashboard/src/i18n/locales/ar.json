@@ -1,0 +1,641 @@
+{
+  "common": {
+    "appName": "NOXUS AI Open WhatsApp",
+    "appSubtitle": "إدارة واتساب مدعومة بالذكاء الاصطناعي",
+    "loading": "جاري التحميل...",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "create": "إنشاء",
+    "close": "إغلاق",
+    "submit": "إرسال",
+    "confirm": "تأكيد",
+    "search": "بحث",
+    "filter": "تصفية",
+    "actions": "الإجراءات",
+    "status": "الحالة",
+    "name": "الاسم",
+    "role": "الدور",
+    "type": "النوع",
+    "url": "الرابط",
+    "port": "المنفذ",
+    "host": "المضيف",
+    "username": "اسم المستخدم",
+    "password": "كلمة المرور",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "enabled": "مفعل",
+    "disabled": "معطل",
+    "connected": "متصل",
+    "disconnected": "غير متصل",
+    "never": "أبدًا",
+    "justNow": "الآن",
+    "minAgo": "منذ {{count}} دقيقة",
+    "hoursAgo": "منذ {{count}} ساعة",
+    "optional": "اختياري",
+    "language": "اللغة",
+    "english": "English",
+    "arabic": "العربية",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "expand": "توسيع",
+    "collapse": "طي",
+    "logout": "تسجيل الخروج",
+    "refresh": "تحديث",
+    "errorGeneric": "حدث خطأ",
+    "unknownError": "خطأ غير معروف"
+  },
+  "theme": {
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "النظام",
+    "label": "الثيم: {{value}}"
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "sessions": "الجلسات",
+    "webhooks": "الويب هوكس",
+    "apiKeys": "مفاتيح API",
+    "messageTester": "اختبار الرسائل",
+    "ai": "إدارة AI",
+    "infrastructure": "البنية التحتية",
+    "plugins": "الإضافات",
+    "logs": "السجلات"
+  },
+  "errorBoundary": {
+    "title": "حدث خطأ",
+    "description": "واجهت لوحة التحكم خطأ غير متوقع.",
+    "reload": "إعادة تحميل اللوحة"
+  },
+  "login": {
+    "apiKey": "مفتاح API",
+    "apiKeyPlaceholder": "أدخل مفتاح API",
+    "apiKeyRequired": "مفتاح API مطلوب",
+    "connect": "اتصال",
+    "connecting": "جاري الاتصال...",
+    "invalidKey": "مفتاح API غير صحيح",
+    "connectionError": "تعذر الاتصال بالخادم. حاول مرة أخرى.",
+    "help": "تحتاج مساعدة؟",
+    "viewDocs": "عرض التوثيق",
+    "footer": "لوحة تشغيل NOXUS AI Open WhatsApp",
+    "version": "v{{version}} · {{date}}"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "subtitle": "نظرة عامة على جلسات واتساب والنشاط",
+    "stats": {
+      "activeSessions": "الجلسات النشطة",
+      "messagesToday": "رسائل اليوم",
+      "webhooksConfigured": "الويب هوكس المفعلة",
+      "apiCalls": "طلبات API خلال 24 ساعة"
+    },
+    "ai": {
+      "title": "مركز أوامر AI",
+      "subtitle": "ردود واتساب عبر Gemini مبنية على قاعدة المعرفة الخاصة بكم",
+      "model": "الموديل",
+      "knowledge": "المعرفة",
+      "autoReply": "الرد الآلي",
+      "ready": "جاهز",
+      "needsSetup": "يحتاج إعداد",
+      "off": "متوقف"
+    },
+    "sessionsOverview": "نظرة على الجلسات",
+    "showingSessions": "عرض {{shown}} من أصل {{total}} جلسة",
+    "columns": {
+      "sessionId": "معرف الجلسة",
+      "phone": "رقم الهاتف",
+      "status": "الحالة",
+      "lastActive": "آخر نشاط",
+      "actions": "الإجراءات"
+    },
+    "noSessions": "لا توجد جلسات. أنشئ جلسة للبدء.",
+    "view": "عرض",
+    "disconnect": "فصل",
+    "errorPrefix": "خطأ: {{message}}",
+    "loadError": "فشل تحميل البيانات"
+  },
+  "sessionStatus": {
+    "created": "جديدة",
+    "idle": "خاملة",
+    "initializing": "بدء التشغيل...",
+    "connecting": "جاري الاتصال...",
+    "qr_ready": "امسح QR",
+    "ready": "متصلة",
+    "disconnected": "غير متصلة"
+  },
+  "sessions": {
+    "title": "الجلسات",
+    "subtitle": "إدارة جلسات واتساب وربطها بكود QR",
+    "newSession": "جلسة جديدة",
+    "searchPlaceholder": "ابحث في الجلسات...",
+    "filter": {
+      "all": "كل الحالات",
+      "active": "نشطة (متصلة)",
+      "inactive": "غير نشطة",
+      "connecting": "قيد الاتصال"
+    },
+    "empty": {
+      "title": "لا توجد جلسات",
+      "description": "أنشئ جلسة جديدة للبدء"
+    },
+    "create": {
+      "title": "إنشاء جلسة جديدة",
+      "label": "اسم الجلسة",
+      "placeholder": "مثال: marketing-bot",
+      "hint": "استخدم حروفًا صغيرة وأرقامًا وشرطات فقط. مثال: <code>customer-support</code> أو <code>bot-1</code>",
+      "invalidChars": "حروف غير مسموحة. استخدم حروفًا صغيرة وأرقامًا وشرطات فقط.",
+      "tooLong": "يجب ألا يزيد الاسم عن 50 حرفًا ({{length}}/50).",
+      "duplicate": "توجد جلسة بنفس الاسم.",
+      "successTitle": "تم إنشاء الجلسة",
+      "successDesc": "تم إنشاء جلسة \"{{name}}\" بنجاح",
+      "errorTitle": "فشل الإنشاء",
+      "errorDefault": "فشل إنشاء الجلسة"
+    },
+    "delete": {
+      "title": "تأكيد الحذف",
+      "message": "هل تريد حذف جلسة <strong>\"{{name}}\"</strong>؟",
+      "warning": "لا يمكن التراجع عن هذا الإجراء.",
+      "successTitle": "تم حذف الجلسة",
+      "successDescNamed": "تم حذف جلسة \"{{name}}\"",
+      "successDescGeneric": "تم حذف الجلسة",
+      "errorTitle": "فشل الحذف",
+      "errorDefault": "فشل حذف الجلسة"
+    },
+    "qr": {
+      "title": "امسح كود QR",
+      "step1": "<strong>1.</strong> افتح واتساب على هاتفك",
+      "step2": "<strong>2.</strong> اضغط على <strong>القائمة</strong> ثم <strong>الأجهزة المرتبطة</strong>",
+      "step3": "<strong>3.</strong> اضغط <strong>ربط جهاز</strong> وامسح هذا الكود",
+      "autoRefresh": "يتم تحديث QR تلقائيًا كل 5 ثوانٍ",
+      "generating": "جاري إنشاء كود QR...",
+      "unavailable": "كود QR غير متاح الآن. حاول بعد لحظات.",
+      "preparing": "جاري تجهيز كود QR...",
+      "showQr": "عرض QR",
+      "loading": "جاري التحميل...",
+      "scanToConnect": "امسح كود QR للاتصال"
+    },
+    "details": {
+      "title": "تفاصيل الجلسة",
+      "name": "الاسم",
+      "status": "الحالة",
+      "sessionId": "معرف الجلسة",
+      "phone": "رقم الهاتف",
+      "phoneNone": "غير متصل",
+      "created": "تاريخ الإنشاء",
+      "lastActive": "آخر نشاط"
+    },
+    "actions": {
+      "view": "عرض",
+      "start": "تشغيل",
+      "stop": "إيقاف",
+      "reconnect": "إعادة اتصال",
+      "delete": "حذف"
+    },
+    "toasts": {
+      "readyTitle": "الجلسة جاهزة",
+      "readyDesc": "جلسة واتساب متصلة الآن",
+      "disconnectedTitle": "تم فصل الجلسة",
+      "disconnectedDesc": "تم فصل جلسة واتساب"
+    },
+    "card": {
+      "phone": "الهاتف",
+      "sessionId": "معرف الجلسة",
+      "lastActive": "آخر نشاط"
+    }
+  },
+  "webhooks": {
+    "title": "الويب هوكس",
+    "subtitle": "إعداد استدعاءات HTTP للأحداث الفورية",
+    "addWebhook": "إضافة Webhook",
+    "createTitle": "إنشاء Webhook",
+    "editTitle": "تعديل Webhook",
+    "deleteTitle": "حذف Webhook",
+    "deleteConfirm": "هل تريد حذف هذا الويب هوك؟",
+    "selectSession": "اختر جلسة...",
+    "session": "الجلسة",
+    "events": "الأحداث",
+    "available": "الأحداث المتاحة",
+    "saveChanges": "حفظ التغييرات",
+    "columns": {
+      "url": "الرابط",
+      "events": "الأحداث",
+      "session": "الجلسة",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+    },
+    "empty": {
+      "title": "لا توجد Webhooks",
+      "description": "أضف Webhook لاستقبال إشعارات الأحداث"
+    },
+    "toasts": {
+      "created": "تم إنشاء Webhook بنجاح",
+      "createFailed": "فشل إنشاء Webhook: {{message}}",
+      "deleted": "تم حذف Webhook بنجاح",
+      "deleteFailed": "فشل حذف Webhook: {{message}}",
+      "updated": "تم تحديث Webhook بنجاح",
+      "updateFailed": "فشل تحديث Webhook: {{message}}",
+      "testOk": "اختبار Webhook ناجح. الحالة: {{status}}",
+      "testFailed": "فشل اختبار Webhook: {{message}}",
+      "testError": "تعذر اختبار Webhook: {{message}}"
+    },
+    "actions": {
+      "test": "اختبار",
+      "edit": "تعديل",
+      "delete": "حذف"
+    },
+    "eventDescriptions": {
+      "message.received": "عند استقبال رسالة",
+      "message.sent": "عند إرسال رسالة",
+      "session.connected": "عند اتصال جلسة",
+      "session.disconnected": "عند فصل جلسة",
+      "session.qr": "عند إنشاء كود QR",
+      "all": "كل الأحداث"
+    }
+  },
+  "apiKeys": {
+    "title": "مفاتيح API",
+    "subtitle": "إدارة مفاتيح API للتحقق والصلاحيات",
+    "createBtn": "إنشاء مفتاح API",
+    "modalTitle": "إنشاء مفتاح API",
+    "createdTitle": "تم إنشاء مفتاح API",
+    "createdHint": "انسخ هذا المفتاح الآن. لن تتمكن من رؤيته مرة أخرى.",
+    "namePlaceholder": "مثال: Production Key",
+    "rolesTitle": "مرجع الأدوار",
+    "roles": {
+      "admin": "مدير",
+      "operator": "مشغل",
+      "viewer": "مشاهد"
+    },
+    "roleDescriptions": {
+      "admin": "وصول كامل لكل الموارد",
+      "operator": "إدارة الجلسات والرسائل",
+      "viewer": "قراءة فقط"
+    },
+    "columns": {
+      "name": "الاسم",
+      "key": "المفتاح",
+      "role": "الدور",
+      "status": "الحالة",
+      "lastUsed": "آخر استخدام",
+      "actions": "الإجراءات"
+    },
+    "statuses": {
+      "active": "نشط",
+      "revoked": "ملغي"
+    },
+    "empty": {
+      "title": "لا توجد مفاتيح API",
+      "description": "أنشئ مفتاح API لتوثيق الطلبات"
+    },
+    "confirm": {
+      "deleteTitle": "حذف مفتاح API",
+      "revokeTitle": "إلغاء مفتاح API",
+      "deleteMessage": "هل تريد حذف <strong>{{name}}</strong> نهائيًا؟ لا يمكن التراجع.",
+      "revokeMessage": "هل تريد إلغاء <strong>{{name}}</strong>؟ لن يعمل المفتاح بعد ذلك.",
+      "delete": "حذف",
+      "revoke": "إلغاء"
+    },
+    "actions": {
+      "copy": "نسخ",
+      "revoke": "إلغاء",
+      "delete": "حذف"
+    }
+  },
+  "logs": {
+    "title": "سجلات التدقيق",
+    "subtitle": "تتبع ومراجعة كل إجراءات API وأحداث النظام",
+    "exportCsv": "تصدير CSV",
+    "searchPlaceholder": "ابحث في السجلات...",
+    "severity": {
+      "all": "كل المستويات",
+      "info": "معلومة",
+      "warn": "تحذير",
+      "error": "خطأ"
+    },
+    "columns": {
+      "timestamp": "الوقت",
+      "action": "الإجراء",
+      "session": "الجلسة",
+      "apiKey": "مفتاح API",
+      "ip": "عنوان IP",
+      "severity": "المستوى"
+    },
+    "empty": {
+      "title": "لا توجد سجلات",
+      "description": "ستظهر سجلات التدقيق هنا عند تنفيذ الإجراءات"
+    }
+  },
+  "messageTester": {
+    "title": "اختبار الرسائل",
+    "subtitle": "إرسال رسائل تجريبية من خلال API",
+    "compose": "إرسال رسالة اختبار",
+    "responseTitle": "استجابة API",
+    "session": "الجلسة",
+    "noReadySessions": "لا توجد جلسات جاهزة",
+    "sessionOptionPhoneNone": "لا يوجد هاتف",
+    "recipientType": "نوع المستلم",
+    "personal": "شخصي",
+    "group": "مجموعة",
+    "selectGroup": "اختر مجموعة",
+    "recipientPhone": "رقم هاتف المستلم",
+    "loadingGroups": "جاري تحميل المجموعات...",
+    "noGroupsFound": "لم يتم العثور على مجموعات",
+    "selectGroupHint": "اختر مجموعة من واتساب",
+    "phoneHint": "استخدم الصيغة الدولية بدون مسافات",
+    "messageType": "نوع الرسالة",
+    "types": {
+      "text": "نص",
+      "image": "صورة",
+      "video": "فيديو",
+      "audio": "صوت",
+      "document": "مستند"
+    },
+    "messageContent": "محتوى الرسالة",
+    "messagePlaceholder": "اكتب رسالتك هنا...",
+    "mediaUrl": "رابط الوسائط",
+    "caption": "تعليق",
+    "filename": "اسم الملف",
+    "captionPlaceholder": "اكتب التعليق...",
+    "filenamePlaceholder": "document.pdf",
+    "send": "إرسال الرسالة",
+    "sending": "جاري الإرسال...",
+    "viewOnly": "عرض فقط",
+    "responseEmpty": "أرسل رسالة لعرض استجابة API",
+    "successLabel": "200 OK - نجاح",
+    "failedLabel": "400 - فشل",
+    "response": {
+      "timestamp": "الوقت",
+      "messageId": "معرف الرسالة",
+      "error": "خطأ"
+    },
+    "sendFailed": "فشل إرسال الرسالة"
+  },
+  "aiManager": {
+    "title": "إدارة AI",
+    "subtitle": "تحكم في Gemini، الرد الآلي، قاعدة المعرفة، وأوامر API المباشرة من مكان واحد",
+    "status": {
+      "ready": "جاهز",
+      "needsSetup": "يحتاج إعداد",
+      "off": "متوقف"
+    },
+    "cards": {
+      "autoReply": "الرد الآلي",
+      "key": "مفتاح Gemini",
+      "keyReady": "موجود",
+      "keyMissing": "غير موجود",
+      "knowledge": "قاعدة المعرفة",
+      "interactions": "آخر التفاعلات",
+      "apis": "APIs المفعلة"
+    },
+    "settings": {
+      "title": "إعدادات الموديل",
+      "subtitle": "التفعيل، المفتاح، الموديل، وحدود الردود",
+      "enable": "تشغيل الرد الآلي",
+      "enableHint": "يرد فقط على رسائل العملاء النصية بعد اتصال جلسة واتساب",
+      "geminiKey": "مفتاح Gemini API",
+      "keyConfigured": "المفتاح محفوظ. اتركه فارغًا للإبقاء عليه",
+      "keyPlaceholder": "الصق مفتاح Gemini هنا",
+      "showKey": "إظهار المفتاح",
+      "hideKey": "إخفاء المفتاح",
+      "model": "موديل Gemini",
+      "knowledgePath": "مسار قاعدة المعرفة",
+      "maxReplyChars": "أقصى عدد حروف للرد",
+      "cooldown": "الفاصل بين الردود بالمللي ثانية",
+      "temperature": "درجة الإبداع",
+      "includeGroups": "السماح بالرد داخل الجروبات",
+      "clearKey": "مسح مفتاح Gemini المحفوظ",
+      "systemPrompt": "تعليمات النظام",
+      "save": "حفظ إعدادات AI"
+    },
+    "knowledge": {
+      "title": "داتا الردود",
+      "subtitle": "المعلومات التي يعتمد عليها AI عند الرد على العملاء",
+      "placeholder": "اكتب خدماتكم، الأسعار، شروط الحجز، مواعيد العمل، وأي إجابات معتمدة هنا. استخدم /slug للإشارة إلى API مسجل...",
+      "updatedAt": "آخر تحديث: {{value}}",
+      "save": "حفظ الداتا",
+      "slashHint": "اكتب / للإشارة إلى API مسجل بالاسم المختصر، وسيتم جلب بياناته مباشرة قبل الرد.",
+      "slashTitle": "إدراج أمر / لـ API",
+      "referenced": "APIs المستخدمة:"
+    },
+    "apis": {
+      "title": "APIs (أوامر /slash)",
+      "subtitle": "سجل APIs خارجية واستدعِها من داتا الردود بـ /slug، وسيقوم AI بجلبها مباشرة.",
+      "add": "إضافة API",
+      "empty": "لا توجد APIs مسجلة بعد",
+      "emptyHint": "أضف API ليتمكن AI من جلب البيانات المباشرة عند سؤال العميل عن معلومة متغيرة.",
+      "createTitle": "تسجيل API",
+      "editTitle": "تعديل API",
+      "formSubtitle": "الـ Slug هو ما يكتبه بعد / في داتا الردود، والوصف يخبر AI بمحتوى الـ API.",
+      "toggle": "تفعيل/تعطيل API",
+      "test": "اختبار",
+      "lastFetched": "آخر جلب: {{value}}",
+      "confirmDelete": "حذف \"{{name}}\"؟ المراجع في داتا الردود ستتوقف.",
+      "fields": {
+        "slug": "Slug (يُكتب بعد /)",
+        "name": "اسم العرض",
+        "description": "ما هو هذا الـ API؟",
+        "descriptionPlaceholder": "مثلاً: يرجع قائمة الأسعار المباشرة من نظام المطعم.",
+        "method": "طريقة HTTP",
+        "url": "الرابط",
+        "headers": "Headers (سطر لكل واحدة: Key: Value)",
+        "body": "Body الطلب (JSON)",
+        "enabled": "مفعّل — قابل للاستدعاء من داتا الردود"
+      },
+      "errors": {
+        "slugRequired": "Slug مطلوب",
+        "urlRequired": "الرابط مطلوب"
+      },
+      "toasts": {
+        "created": "تم تسجيل الـ API",
+        "updated": "تم تحديث الـ API",
+        "deleted": "تم حذف الـ API",
+        "createFailed": "فشل تسجيل الـ API",
+        "updateFailed": "فشل تحديث الـ API",
+        "deleteFailed": "فشل حذف الـ API",
+        "testOk": "الـ API رد خلال {{ms}}ms",
+        "testFailed": "فشل اختبار الـ API"
+      }
+    },
+    "interactions": {
+      "title": "الأسئلة والردود",
+      "subtitle": "آخر الرسائل التي تعامل معها AI والقرار الذي اتخذه",
+      "clear": "مسح سجل AI",
+      "empty": "لا توجد تفاعلات بعد",
+      "question": "السؤال",
+      "reply": "الرد",
+      "decision": "القرار",
+      "noReply": "لم يتم إرسال رد",
+      "status": {
+        "replied": "تم الرد",
+        "skipped": "تم التخطي",
+        "failed": "فشل"
+      },
+      "reasons": {
+        "group_disabled": "الرد على الجروبات متوقف",
+        "missing_api_key": "مفتاح Gemini غير موجود",
+        "cooldown": "داخل فترة الانتظار",
+        "missing_knowledge": "قاعدة المعرفة فارغة أو غير موجودة",
+        "empty_model_reply": "الموديل لم يرجع رد",
+        "reply_failed": "فشل إرسال الرد"
+      }
+    },
+    "toasts": {
+      "configSaved": "تم حفظ إعدادات AI",
+      "configFailed": "فشل حفظ إعدادات AI",
+      "knowledgeSaved": "تم حفظ داتا الردود",
+      "knowledgeFailed": "فشل حفظ الداتا",
+      "logsCleared": "تم مسح سجل AI",
+      "logsFailed": "فشل مسح سجل AI"
+    }
+  },
+  "infrastructure": {
+    "title": "البنية التحتية",
+    "subtitle": "إعداد الخادم وقاعدة البيانات والكاش والتخزين والمحرك",
+    "saveConfig": "حفظ الإعدادات",
+    "saving": "جاري الحفظ...",
+    "server": {
+      "title": "إعدادات الخادم",
+      "production": "إنتاج",
+      "development": "تطوير",
+      "environment": "البيئة",
+      "domain": "الدومين",
+      "apiPort": "منفذ API",
+      "dashboardPort": "منفذ لوحة التحكم",
+      "corsOrigins": "مصادر CORS",
+      "corsPlaceholder": "* أو مصادر مفصولة بفواصل",
+      "publicApiUrl": "رابط API العام (اختياري)",
+      "publicDashboardUrl": "رابط لوحة التحكم العام (اختياري)"
+    },
+    "webhook": {
+      "title": "Webhook وحدود الطلبات",
+      "settings": "إعدادات Webhook",
+      "timeout": "مهلة الانتظار (ms)",
+      "maxRetries": "أقصى عدد محاولات",
+      "retryDelay": "الفاصل بين المحاولات (ms)",
+      "rateLimit": "حدود الطلبات",
+      "window": "نافذة الوقت بالثواني",
+      "maxReq": "أقصى عدد طلبات"
+    },
+    "database": {
+      "title": "إعدادات قاعدة البيانات",
+      "sqlite": "SQLite",
+      "sqliteDesc": "قاعدة بيانات محلية داخل ملف",
+      "postgres": "PostgreSQL",
+      "postgresDesc": "قاعدة بيانات مناسبة للإنتاج",
+      "useBuiltIn": "استخدام حاوية PostgreSQL مدمجة",
+      "builtInDesc": "سيقوم OpenWA بإدارة حاوية PostgreSQL لك",
+      "dbName": "اسم قاعدة البيانات",
+      "poolSize": "حجم الاتصال",
+      "ssl": "اتصال SSL",
+      "sslDesc": "تفعيل TLS/SSL لاتصال آمن بقاعدة البيانات",
+      "migrationsTitle": "ترحيلات قاعدة البيانات",
+      "migrationsStatus": "المخطط متزامن تلقائيًا عبر TypeORM",
+      "migrationsHint": "تتم إدارة الترحيلات تلقائيًا. استخدم CLI للترحيلات اليدوية."
+    },
+    "redis": {
+      "title": "Redis",
+      "enable": "تفعيل Redis",
+      "enableDesc": "مطلوب للكاش وتخزين الجلسات وطوابير BullMQ",
+      "useBuiltIn": "استخدام حاوية Redis مدمجة",
+      "builtInDesc": "سيقوم OpenWA بإدارة حاوية Redis لك",
+      "queueTitle": "تفعيل نظام طوابير BullMQ",
+      "queueDesc": "استخدام الطوابير لإرسال موثوق للرسائل والويب هوكس",
+      "statsTitle": "إحصائيات الطوابير",
+      "messageQueue": "طابور الرسائل",
+      "webhookQueue": "طابور Webhook",
+      "pending": "قيد الانتظار",
+      "completed": "مكتملة",
+      "failed": "فشلت",
+      "clearFailed": "مسح المهام الفاشلة",
+      "viewBullMq": "فتح لوحة Bull MQ",
+      "disabledTitle": "Redis معطل",
+      "disabledDesc": "فعّل Redis للكاش وتخزين الجلسات وطوابير الرسائل.",
+      "passwordOptional": "(اختياري)"
+    },
+    "storage": {
+      "title": "إعدادات التخزين",
+      "local": "تخزين محلي",
+      "localDesc": "حفظ ملفات الوسائط محليًا",
+      "s3": "Amazon S3",
+      "s3Desc": "تخزين سحابي متوافق مع S3",
+      "useBuiltIn": "استخدام حاوية MinIO مدمجة",
+      "builtInDesc": "سيقوم OpenWA بإدارة MinIO كخدمة متوافقة مع S3",
+      "storagePath": "مسار التخزين",
+      "bucket": "اسم Bucket",
+      "region": "المنطقة",
+      "accessKey": "Access Key",
+      "secretKey": "Secret Key",
+      "endpoint": "Endpoint مخصص (اختياري)",
+      "endpointHint": "لـ MinIO أو خدمات S3 المتوافقة"
+    },
+    "statusLabels": {
+      "connected": "متصل",
+      "disconnected": "غير متصل",
+      "disabled": "معطل"
+    },
+    "restart": {
+      "idleTitle": "تم حفظ الإعدادات",
+      "restartingTitle": "جاري إعادة تشغيل الخادم...",
+      "waitingTitle": "يرجى الانتظار...",
+      "successTitle": "الخادم جاهز",
+      "errorTitle": "فشل إعادة التشغيل",
+      "idleDesc": "تم حفظ الإعدادات في <code>.env.generated</code>.<br/>يلزم إعادة تشغيل الخادم لتطبيق التغييرات.",
+      "later": "إعادة التشغيل لاحقًا",
+      "now": "إعادة التشغيل الآن",
+      "restartingMsg": "الخادم يعيد التشغيل... {{count}} ثانية",
+      "checking": "جاري فحص حالة الخادم...",
+      "dontClose": "يرجى عدم إغلاق هذه النافذة",
+      "successMsg": "عاد الخادم للعمل. سيتم تحديث الصفحة تلقائيًا.",
+      "errorMsg": "لم يستجب الخادم بعد 30 ثانية. راجع سجلات Docker وأعد التشغيل يدويًا.",
+      "reload": "إعادة تحميل الصفحة"
+    },
+    "toasts": {
+      "saveFailed": "فشل الحفظ"
+    }
+  },
+  "plugins": {
+    "title": "الإضافات",
+    "subtitle": "إدارة المحركات ووجهات التخزين والامتدادات",
+    "refresh": "تحديث",
+    "engineCard": "محرك واتساب النشط",
+    "running": "يعمل",
+    "supportedFeatures": "الميزات المدعومة:",
+    "more": "+{{count}} إضافية",
+    "builtIn": "مدمج",
+    "noDescription": "لا يوجد وصف",
+    "required": "مطلوب",
+    "active": "نشط",
+    "activate": "تفعيل",
+    "enable": "تفعيل",
+    "disable": "تعطيل",
+    "healthCheck": "فحص الصحة",
+    "configure": "إعداد",
+    "empty": {
+      "title": "لا توجد إضافات",
+      "description": "ثبت إضافات لتوسيع إمكانيات OpenWA"
+    },
+    "config": {
+      "title": "إعداد {{name}}",
+      "restartNotice": "التغييرات تحتاج إعادة تشغيل الخادم",
+      "engineType": "نوع المحرك",
+      "headless": "وضع Headless",
+      "headlessDesc": "تشغيل المتصفح بدون واجهة مرئية (مناسب للإنتاج)",
+      "sessionDataPath": "مسار بيانات الجلسة",
+      "browserArgs": "وسائط المتصفح",
+      "noOptions": "لا توجد خيارات إعداد لهذه الإضافة",
+      "save": "حفظ الإعدادات"
+    },
+    "toasts": {
+      "errorTitle": "خطأ في الإضافة",
+      "errorDefault": "فشل تغيير حالة الإضافة",
+      "healthOk": "فحص الصحة ناجح",
+      "healthFail": "فشل فحص الصحة",
+      "healthError": "خطأ أثناء فحص الصحة",
+      "savedTitle": "تم حفظ الإعدادات",
+      "savedDesc": "يلزم إعادة تشغيل الخادم لتطبيق التغييرات.",
+      "saveFailed": "فشل الحفظ"
+    }
+  }
+}
