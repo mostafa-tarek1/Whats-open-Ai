@@ -54,6 +54,7 @@
 | 20  | [Community Guidelines](./20-community-guidelines.md)             | Contribution and governance                       |
 | 21  | [Glossary](./21-glossary.md)                                     | Terms and definitions                             |
 | 22  | [n8n Integration](./22-n8n-integration.md)                       | n8n community nodes for OpenWA                    |
+| 23  | [Laravel Integration](./23-laravel-integration.md)               | Send WhatsApp notifications and OTP from Laravel  |
 
 ## Quick Start
 
@@ -171,9 +172,10 @@ socket.on('message', msg => {
 | API Key Authentication & Roles  | Ready                         |
 | CIDR IP Whitelisting            | Ready                         |
 | Rate Limiting                   | Ready                         |
-| Audit Logging                   | Ready                         |
+| Audit Logging                   | Partial                       |
 | Groups / Contacts / Labels API  | Ready                         |
-| Channels / Status / Catalog API | Experimental (engine-limited) |
+| Channels API                    | Experimental (engine-limited) |
+| Status / Catalog API            | Not implemented in current engine |
 | Queue-based Webhook Retries     | Optional (QUEUE_ENABLED=true) |
 
 ## Tech Stack

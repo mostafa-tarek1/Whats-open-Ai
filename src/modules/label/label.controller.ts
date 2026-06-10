@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 import { SessionService } from '../session/session.service';
+import { RequireRole } from '../auth/decorators/auth.decorators';
+import { ApiKeyRole } from '../auth/entities/api-key.entity';
 
 @ApiTags('labels')
 @Controller('sessions/:sessionId/labels')
@@ -61,6 +63,7 @@ export class LabelController {
   }
 
   @Post('chat/:chatId')
+  @RequireRole(ApiKeyRole.OPERATOR)
   @ApiOperation({ summary: 'Add a label to a chat' })
   @ApiParam({ name: 'sessionId', description: 'Session ID' })
   @ApiParam({ name: 'chatId', description: 'Chat ID' })
@@ -88,6 +91,7 @@ export class LabelController {
   }
 
   @Delete('chat/:chatId/:labelId')
+  @RequireRole(ApiKeyRole.OPERATOR)
   @ApiOperation({ summary: 'Remove a label from a chat' })
   @ApiParam({ name: 'sessionId', description: 'Session ID' })
   @ApiParam({ name: 'chatId', description: 'Chat ID' })

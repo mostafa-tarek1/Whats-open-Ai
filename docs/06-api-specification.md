@@ -13,8 +13,8 @@ Development: http://localhost:2785/api
 # API Key in Header
 X-API-Key: your-api-key-here
 
-# Or in Query Parameter (not recommended)
-GET /api/sessions?apiKey=your-api-key-here
+# Or as a Bearer token
+Authorization: Bearer your-api-key-here
 ```
 
 ### Common Headers

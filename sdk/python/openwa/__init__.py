@@ -123,7 +123,7 @@ class _MessagesResource:
         self, session_id: str, data: dict[str, str]
     ) -> MessageResponse:
         result = self._client._request(
-            "POST", f"/api/sessions/{session_id}/messages/text", data
+            "POST", f"/api/sessions/{session_id}/messages/send-text", data
         )
         return MessageResponse(
             message_id=result["messageId"],

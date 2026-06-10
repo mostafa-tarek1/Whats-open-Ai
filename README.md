@@ -13,6 +13,7 @@
   <a href="#why-noxus-ai-open-whatsapp">Why</a> ·
   <a href="#the-ai-stack">AI Stack</a> ·
   <a href="#api-slash-commands--the-killer-feature">API Slash</a> ·
+  <a href="#laravel-integration">Laravel</a> ·
   <a href="#quick-start">Quick Start</a> ·
   <a href="#docs">Docs</a>
 </p>
@@ -150,7 +151,7 @@ A modern React 19 + Vite + TanStack Query dashboard with full English/Arabic + R
 | **Message Tester**   | Send text/media to any chat and see the result without writing code                      |
 | **AI Manager**       | Configure Gemini, edit Reply Data with the `/` picker, register APIs, view AI log        |
 | **Webhooks**         | HMAC-signed webhooks per session, granular event subscription                            |
-| **API Keys**         | Role-based keys (admin/user/readonly), IP allowlists, session scoping, expiry           |
+| **API Keys**         | Role-based keys (`admin` / `operator` / `viewer`), IP allowlists, session scoping, expiry |
 | **Infrastructure**   | Switch DB / cache / storage / engine without editing code, persist to `.env`             |
 | **Plugins**          | Toggle pluggable engines (whatsapp-web.js, future Baileys), per-plugin config            |
 | **Logs**             | Paginated audit trail across the platform, filterable by severity                        |
@@ -182,8 +183,10 @@ A modern React 19 + Vite + TanStack Query dashboard with full English/Arabic + R
 | Message Reactions   | ✅     | Emoji reactions to inbound and outbound messages |
 | Read / Typing       | ✅     | Read receipts, typing/recording indicators       |
 | Groups API          | ✅     | Create, manage participants, mute, message       |
-| Channels/Newsletter | ✅     | WhatsApp Channels support                        |
+| Channels/Newsletter | ⚠️     | Engine-limited; verify with your WhatsApp account |
 | Labels              | ✅     | Organise chats with native WhatsApp labels       |
+| Status/Stories      | ❌     | Not implemented in the current whatsapp-web.js adapter |
+| Catalog             | ❌     | Not implemented in the current whatsapp-web.js adapter |
 | Multi-Session       | ✅     | Multiple WhatsApp accounts on one instance       |
 
 ### AI
@@ -204,8 +207,8 @@ A modern React 19 + Vite + TanStack Query dashboard with full English/Arabic + R
 | ------------------- | ------ | ------------------------------------------------ |
 | REST API            | ✅     | Full HTTP surface, Swagger at `/api/docs`        |
 | Webhooks            | ✅     | Per-session, HMAC-signed                         |
-| API Key Auth        | ✅     | Roles + IP allowlist + session scope             |
-| Audit Logging       | ✅     | Every API operation tracked                      |
+| API Key Auth        | ✅     | `admin` / `operator` / `viewer`, IP allowlist + session scope |
+| Audit Logging       | ⚠️     | Core session actions tracked; broader coverage planned |
 | Rate Limiting       | ✅     | Per-window configurable limits                   |
 | CIDR Whitelisting   | ✅     | IP-based access control                          |
 | Proxy Support       | ✅     | Per-session proxy configuration                  |
@@ -353,6 +356,33 @@ curl -X POST http://localhost:2785/api/sessions/{sessionId}/webhooks \
     "secret": "your-hmac-secret"
   }'
 ```
+
+---
+
+## Laravel Integration
+
+OpenWA can be used from Laravel through normal HTTP requests. The recommended setup is:
+
+- Create an OpenWA API key with the `operator` role.
+- Restrict that key to your Laravel server IP and the target WhatsApp session.
+- Store OTP generation and verification in Laravel; use OpenWA only as the WhatsApp delivery channel.
+- Queue notification sends and keep SMS/email as a fallback for critical OTP flows.
+
+Minimal Laravel send example:
+
+```php
+use Illuminate\Support\Facades\Http;
+
+Http::baseUrl(config('services.openwa.url'))
+    ->withHeaders(['X-API-Key' => config('services.openwa.key')])
+    ->post('/api/sessions/'.config('services.openwa.session_id').'/messages/send-text', [
+        'chatId' => preg_replace('/\D+/', '', $phone).'@c.us',
+        'text' => "Your verification code is {$otp}",
+    ])
+    ->throw();
+```
+
+Full Laravel setup, notification channel, OTP example, and webhook HMAC verification are documented in [docs/23-laravel-integration.md](docs/23-laravel-integration.md).
 
 ---
 

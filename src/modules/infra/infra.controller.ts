@@ -3,7 +3,8 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import { DataSource } from 'typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
-import { Public } from '../auth/decorators/auth.decorators';
+import { Public, RequireRole } from '../auth/decorators/auth.decorators';
+import { ApiKeyRole } from '../auth/entities/api-key.entity';
 import { EngineFactory } from '../../engine/engine.factory';
 import { DockerService } from '../docker';
 import { CacheService } from '../../common/cache/cache.service';
@@ -204,6 +205,7 @@ export class InfraController {
   }
 
   @Put('config')
+  @RequireRole(ApiKeyRole.ADMIN)
   @ApiOperation({ summary: 'Save infrastructure configuration to .env file' })
   @ApiResponse({ status: 200, description: 'Configuration saved' })
   @ApiBody({ description: 'Configuration to save' })
@@ -335,6 +337,7 @@ export class InfraController {
     }
   }
   @Post('restart')
+  @RequireRole(ApiKeyRole.ADMIN)
   @ApiOperation({ summary: 'Request server restart with Docker orchestration' })
   @ApiResponse({ status: 200, description: 'Server will restart with new profiles' })
   async requestRestart(@Body() body?: { profiles?: string[]; profilesToRemove?: string[] }): Promise<{
@@ -436,6 +439,7 @@ export class InfraController {
   }
 
   @Get('export-data')
+  @RequireRole(ApiKeyRole.ADMIN)
   @ApiOperation({ summary: 'Export all data from Data DB for migration' })
   @ApiResponse({ status: 200, description: 'Exported data as JSON' })
   async exportData(): Promise<{
@@ -483,6 +487,7 @@ export class InfraController {
   }
 
   @Post('import-data')
+  @RequireRole(ApiKeyRole.ADMIN)
   @ApiOperation({ summary: 'Import data to Data DB (replaces existing data)' })
   @ApiBody({
     description: 'Exported data from export-data endpoint',
@@ -668,6 +673,7 @@ export class InfraController {
   // ============================================================================
 
   @Get('storage/files/count')
+  @RequireRole(ApiKeyRole.ADMIN)
   @ApiOperation({ summary: 'Get file count in current storage' })
   @ApiResponse({ status: 200, description: 'File count and size' })
   async getStorageFileCount(): Promise<{
@@ -686,6 +692,7 @@ export class InfraController {
   }
 
   @Get('storage/export')
+  @RequireRole(ApiKeyRole.ADMIN)
   @ApiOperation({ summary: 'Export all storage files as tar.gz' })
   @ApiResponse({ status: 200, description: 'Tar.gz archive stream' })
   async exportStorage(): Promise<{ message: string; download: string }> {
@@ -709,6 +716,7 @@ export class InfraController {
   }
 
   @Post('storage/import')
+  @RequireRole(ApiKeyRole.ADMIN)
   @ApiOperation({ summary: 'Import storage files from tar.gz' })
   @ApiBody({ description: 'Path to tar.gz file to import' })
   @ApiResponse({ status: 200, description: 'Import result' })

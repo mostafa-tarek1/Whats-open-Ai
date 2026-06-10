@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Laravel integration guide**: Added `docs/23-laravel-integration.md` with Laravel
+  configuration, an OpenWA HTTP client, OTP delivery example, notification channel, and
+  webhook HMAC verification.
+
+### Security
+
+- **Tightened role guards on sensitive endpoints**: Infrastructure configuration,
+  restart, data/storage import-export, and plugin mutation endpoints now require an
+  `admin` API key.
+- **Enforced write permissions on WhatsApp operations**: Group, contact block/unblock,
+  channel subscribe/unsubscribe, label mutation, status posting/deletion, and catalog
+  send actions now require an `operator` API key or higher.
+
+### Changed
+
+- **Documentation accuracy**: Clarified that the current engine does not implement
+  Status/Stories and Catalog APIs, and corrected API authentication docs to list
+  supported `X-API-Key` and Bearer token authentication.
+- **SDK scaffold endpoint sync**: Updated JavaScript and Python SDK scaffold examples to
+  call `/api/sessions/:sessionId/messages/send-text`.
+
 ## [0.1.6] - 2026-05-17
 
 ### Fixed

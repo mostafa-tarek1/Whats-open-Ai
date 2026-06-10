@@ -77,7 +77,7 @@ export class OpenWAClient {
   get messages() {
     return {
       sendText: (sessionId: string, data: { chatId: string; text: string }) =>
-        this.request<MessageResponse>('POST', `/api/sessions/${sessionId}/messages/text`, data),
+        this.request<MessageResponse>('POST', `/api/sessions/${sessionId}/messages/send-text`, data),
     };
   }
 

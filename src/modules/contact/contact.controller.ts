@@ -1,6 +1,8 @@
 import { Controller, Get, Post, Delete, Param, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { SessionService } from '../session/session.service';
+import { RequireRole } from '../auth/decorators/auth.decorators';
+import { ApiKeyRole } from '../auth/entities/api-key.entity';
 
 @ApiTags('contacts')
 @Controller('sessions/:sessionId/contacts')
@@ -86,6 +88,7 @@ export class ContactController {
   }
 
   @Post(':contactId/block')
+  @RequireRole(ApiKeyRole.OPERATOR)
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Block a contact' })
   @ApiParam({ name: 'sessionId', description: 'Session ID' })
@@ -104,6 +107,7 @@ export class ContactController {
   }
 
   @Delete(':contactId/block')
+  @RequireRole(ApiKeyRole.OPERATOR)
   @ApiOperation({ summary: 'Unblock a contact' })
   @ApiParam({ name: 'sessionId', description: 'Session ID' })
   @ApiParam({ name: 'contactId', description: 'Contact ID (e.g., 628xxx@c.us)' })
