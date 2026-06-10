@@ -3,11 +3,12 @@ import { useState, useEffect, useCallback } from 'react';
 type Theme = 'light' | 'dark' | 'system';
 
 const THEME_KEY = 'openwa_theme';
+const validThemes: Theme[] = ['light', 'dark', 'system'];
 
 export function useTheme() {
   const [theme, setThemeState] = useState<Theme>(() => {
-    const saved = localStorage.getItem(THEME_KEY) as Theme | null;
-    return saved || 'dark';
+    const saved = localStorage.getItem(THEME_KEY);
+    return validThemes.includes(saved as Theme) ? (saved as Theme) : 'dark';
   });
 
   const applyTheme = useCallback((newTheme: Theme) => {
@@ -27,7 +28,7 @@ export function useTheme() {
   }, [theme, applyTheme]);
 
   const setTheme = useCallback((newTheme: Theme) => {
-    setThemeState(newTheme);
+    setThemeState(validThemes.includes(newTheme) ? newTheme : 'dark');
   }, []);
 
   const toggleTheme = useCallback(() => {
