@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as fs from 'fs';
 import * as path from 'path';
-import archiver = require('archiver');
+import * as archiver from 'archiver';
 import * as tar from 'tar-stream';
 import { createGunzip } from 'zlib';
 import { Readable, PassThrough } from 'stream';
@@ -153,7 +153,7 @@ export class StorageService {
     const files = await this.listFiles();
     const output = new PassThrough();
 
-    const archive = archiver('tar', {
+    const archive = archiver.create('tar', {
       gzip: true,
       gzipOptions: { level: 6 },
     });
