@@ -1,7 +1,11 @@
 // API Service Layer for OpenWA Dashboard
 // Centralized API client with TypeScript types
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+
+export function apiUrl(endpoint: string): string {
+  return `${API_BASE_URL}${endpoint}`;
+}
 
 // =============================================================================
 // Types
@@ -242,7 +246,7 @@ export interface Settings {
 // =============================================================================
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-  const url = `${API_BASE_URL}${endpoint}`;
+  const url = apiUrl(endpoint);
 
   // Get API key from sessionStorage for authentication
   const apiKey = sessionStorage.getItem('openwa_api_key');

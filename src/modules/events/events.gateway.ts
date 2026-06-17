@@ -11,6 +11,7 @@ import {
 import { Server, Socket } from 'socket.io';
 import { Logger } from '@nestjs/common';
 import { AuthService } from '../auth/auth.service';
+import { getSocketIoPath } from '../../common/utils/base-path';
 import type {
   WSClientMessage,
   WSSubscribeRequest,
@@ -28,6 +29,7 @@ import { SUBSCRIBABLE_EVENTS, buildRoomName } from './dto/ws-messages.dto';
     origin: '*', // In production, restrict this
   },
   namespace: '/events',
+  path: getSocketIoPath(),
 })
 export class EventsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()

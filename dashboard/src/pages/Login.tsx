@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Eye, EyeOff, FolderGit2 } from 'lucide-react';
+import { apiUrl } from '../services/api';
 import './Login.css';
 
 interface LoginProps {
@@ -24,7 +25,7 @@ export function Login({ onLogin }: LoginProps) {
     setError('');
 
     try {
-      const response = await fetch('/api/auth/validate', {
+      const response = await fetch(apiUrl('/auth/validate'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

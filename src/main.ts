@@ -7,6 +7,8 @@ import { ShutdownService } from './common/services/shutdown.service';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import * as path from 'path';
+import type { NextFunction, Request, Response } from 'express';
+import { getConfiguredBasePath } from './common/utils/base-path';
 
 // Configuration loading order (later sources do NOT override earlier ones):
 //   1. Process env (Docker, shell, systemd) — highest priority
@@ -66,6 +68,21 @@ STORAGE_PATH=./data/media
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const basePath = getConfiguredBasePath();
+
+  if (basePath) {
+    app.use((req: Request, _res: Response, next: NextFunction) => {
+      if (req.url === basePath) {
+        req.url = '/';
+      } else if (req.url.startsWith(`${basePath}/`)) {
+        req.url = req.url.slice(basePath.length) || '/';
+      }
+
+      next();
+    });
+
+    console.log(`[Bootstrap] Serving behind base path: ${basePath}`);
+  }
 
   // Enable shutdown hooks for graceful shutdown
   app.enableShutdownHooks();
