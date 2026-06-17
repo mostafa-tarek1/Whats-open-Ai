@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import helmet from 'helmet';
-import { AppModule } from './app.module';
 import { ShutdownService } from './common/services/shutdown.service';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
@@ -67,6 +66,7 @@ STORAGE_PATH=./data/media
 }
 
 async function bootstrap() {
+  const { AppModule } = await import('./app.module.js');
   const app = await NestFactory.create(AppModule);
   const basePath = getConfiguredBasePath();
 
