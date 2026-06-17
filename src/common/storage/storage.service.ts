@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as fs from 'fs';
 import * as path from 'path';
-import archiver from 'archiver';
+import archiver = require('archiver');
 import * as tar from 'tar-stream';
 import { createGunzip } from 'zlib';
 import { Readable, PassThrough } from 'stream';
