@@ -15,7 +15,6 @@ import {
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import {
   useSessionsQuery,
-  useSessionStatsQuery,
   useWebhooksQuery,
   useStopSessionMutation,
   useAiStatusQuery,
@@ -28,7 +27,6 @@ export function Dashboard() {
   useDocumentTitle(t('dashboard.title'));
   const navigate = useNavigate();
   const { data: sessions = [], isLoading: loadingSessions, error: sessionsError } = useSessionsQuery();
-  const { data: stats } = useSessionStatsQuery();
   const { data: webhooks = [] } = useWebhooksQuery();
   const { data: aiStatus } = useAiStatusQuery();
   const stopMutation = useStopSessionMutation();
@@ -39,6 +37,10 @@ export function Dashboard() {
       ? t('dashboard.loadError')
       : null;
   const webhookCount = webhooks.length;
+  const readySessionCount = sessions.filter(session => session.status === 'ready').length;
+  const activeSessionCount = sessions.filter(session =>
+    ['initializing', 'qr_ready', 'authenticating', 'ready'].includes(session.status),
+  ).length;
 
   const handleDisconnect = async (id: string) => {
     try {
@@ -51,9 +53,9 @@ export function Dashboard() {
   const statsCards = [
     {
       label: t('dashboard.stats.activeSessions'),
-      value: stats?.active ?? 0,
+      value: activeSessionCount,
       icon: MessageSquare,
-      trend: `+${stats?.ready ?? 0}`,
+      trend: `+${readySessionCount}`,
       trendUp: true,
     },
     { label: t('dashboard.stats.messagesToday'), value: '—', icon: Send, trend: '0', trendUp: null },
@@ -106,8 +108,8 @@ export function Dashboard() {
         title={t('dashboard.title')}
         subtitle={t('dashboard.subtitle')}
         badge={
-          <span className={`status-badge ${stats && stats.ready > 0 ? 'connected' : 'disconnected'}`}>
-            {stats && stats.ready > 0 ? t('common.connected') : t('common.disconnected')}
+          <span className={`status-badge ${readySessionCount > 0 ? 'connected' : 'disconnected'}`}>
+            {readySessionCount > 0 ? t('common.connected') : t('common.disconnected')}
           </span>
         }
       />
@@ -160,7 +162,7 @@ export function Dashboard() {
         <div className="section-header">
           <h2>{t('dashboard.sessionsOverview')}</h2>
           <span className="section-subtitle">
-            {t('dashboard.showingSessions', { shown: sessions.length, total: stats?.total ?? 0 })}
+            {t('dashboard.showingSessions', { shown: sessions.length, total: sessions.length })}
           </span>
         </div>
 
