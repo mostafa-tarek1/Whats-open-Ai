@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as archiver from 'archiver';
+import archiverModule = require('archiver');
 import * as tar from 'tar-stream';
 import { createGunzip } from 'zlib';
 import { Readable, PassThrough } from 'stream';
@@ -23,6 +23,17 @@ interface S3Config {
   region?: string;
   bucket?: string;
 }
+
+type CreateTarArchive = (
+  format: 'tar',
+  options: { gzip: boolean; gzipOptions: { level: number } },
+) => {
+  pipe: (destination: PassThrough) => void;
+  append: (source: Buffer, data: { name: string }) => void;
+  finalize: () => Promise<void>;
+};
+
+const createTarArchive = archiverModule as unknown as CreateTarArchive;
 
 @Injectable()
 export class StorageService {
@@ -153,7 +164,7 @@ export class StorageService {
     const files = await this.listFiles();
     const output = new PassThrough();
 
-    const archive = archiver.create('tar', {
+    const archive = createTarArchive('tar', {
       gzip: true,
       gzipOptions: { level: 6 },
     });
