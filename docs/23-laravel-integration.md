@@ -4,6 +4,10 @@ This guide shows how to use OpenWA from a Laravel application to send WhatsApp n
 
 > OpenWA uses WhatsApp Web via `whatsapp-web.js`, not the official Meta WhatsApp Business API. For critical OTP flows, keep SMS/email as a fallback and rate-limit attempts per phone number.
 
+For the deployed `hafez.azq1.com` environment, use the exact URLs, production
+checks, secure OTP service, and agent handoff contract in
+[24 - Hafez Server Laravel Integration](./24-hafez-laravel-integration.md).
+
 ## Prerequisites
 
 1. Start OpenWA and open the dashboard.

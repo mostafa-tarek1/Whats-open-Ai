@@ -47,6 +47,7 @@ export function Sessions() {
       if (!silent) setLoading(true);
       const data = await sessionApi.list();
       setSessions(data);
+      setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : t('sessions.create.errorDefault'));
     } finally {

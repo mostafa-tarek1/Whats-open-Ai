@@ -55,6 +55,7 @@
 | 21  | [Glossary](./21-glossary.md)                                     | Terms and definitions                             |
 | 22  | [n8n Integration](./22-n8n-integration.md)                       | n8n community nodes for OpenWA                    |
 | 23  | [Laravel Integration](./23-laravel-integration.md)               | Send WhatsApp notifications and OTP from Laravel  |
+| 24  | [Hafez Laravel Integration](./24-hafez-laravel-integration.md)   | Production Laravel setup for hafez.azq1.com        |
 
 ## Quick Start
 

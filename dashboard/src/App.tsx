@@ -46,6 +46,7 @@ function AppContent() {
       const response = await fetch(apiUrl('/auth/validate'), {
         method: 'POST',
         headers: { 'X-API-Key': key },
+        cache: 'no-store',
       });
       if (response.ok) {
         const data = await response.json();
@@ -73,6 +74,7 @@ function AppContent() {
     fetch(apiUrl('/auth/validate'), {
       method: 'POST',
       headers: { 'X-API-Key': savedKey },
+      cache: 'no-store',
     })
       .then(res => res.json())
       .then(data => {

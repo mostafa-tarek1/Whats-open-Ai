@@ -384,6 +384,10 @@ Http::baseUrl(config('services.openwa.url'))
 
 Full Laravel setup, notification channel, OTP example, and webhook HMAC verification are documented in [docs/23-laravel-integration.md](docs/23-laravel-integration.md).
 
+The production-specific setup for `hafez.azq1.com`, including exact URLs,
+smoke tests, OTP hardening, and an agent handoff contract, is documented in
+[docs/24-hafez-laravel-integration.md](docs/24-hafez-laravel-integration.md).
+
 ---
 
 ## Tech Stack

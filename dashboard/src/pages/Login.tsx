@@ -31,6 +31,7 @@ export function Login({ onLogin }: LoginProps) {
           'Content-Type': 'application/json',
           'X-API-Key': apiKey,
         },
+        cache: 'no-store',
       });
 
       if (response.ok) {
